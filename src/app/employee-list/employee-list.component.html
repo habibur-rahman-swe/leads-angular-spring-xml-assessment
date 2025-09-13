@@ -1,0 +1,40 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Employee List</h2>
+    <div>
+      <input type="file" (change)="onFileSelected($event)" class="form-control d-inline-block w-auto me-2">
+      <button (click)="importEmployees()" class="btn btn-success">Import Employees</button>
+      <a routerLink="/employees/create" class="btn btn-primary ms-2">Add Employee</a>
+    </div>
+  </div>
+
+  <table class="table table-bordered table-hover" *ngIf="employees.length > 0">
+    <thead class="table-light">
+      <tr>
+        <th>Employee Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Division</th>
+        <th>Building</th>
+        <th>Title</th>
+        <th>Room</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees">
+        <td>{{ employee.employeeId }}</td>
+        <td>{{ employee.firstName }}</td>
+        <td>{{ employee.lastName }}</td>
+        <td>{{ employee.division }}</td>
+        <td>{{ employee.building }}</td>
+        <td>{{ employee.title }}</td>
+        <td>{{ employee.room }}</td>
+        <td>
+          <button (click)="editEmployee(employee.employeeId)" class="btn btn-sm btn-warning">Edit</button>
+          <button (click)="deleteEmployee(employee.employeeId)" class="btn btn-sm btn-danger">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
