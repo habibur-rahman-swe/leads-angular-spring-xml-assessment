@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  oracle-db:
+    image: gvenzl/oracle-xe:21-slim
+    container_name: oracle-db
+    ports:
+      - "1521:1521"   # Oracle listener
+      - "5500:5500"   # Enterprise Manager (optional)
+    environment:
+      ORACLE_PASSWORD: leads     # sets SYS, SYSTEM, and PDBADMIN passwords
+      ORACLE_DATABASE: leads     # pluggable database (PDB) name
+      APP_USER: admin            # custom application user
+      APP_USER_PASSWORD: leads   # password for application user
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+
+volumes:
+  oracle-data:
